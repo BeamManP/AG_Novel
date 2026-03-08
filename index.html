@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="同一プロンプトで3つのAIが書いた小説を読み比べる実験">
+    <title>AI Novel Comparison — 3つのAIが書いた物語</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-theme="intro">
+
+    <!-- ============================
+       INTRO — ポスト引用 + 対話プロローグ
+       ============================ -->
+    <section class="novel-section intro-section" id="intro" data-llm="intro">
+        <div class="intro-content">
+            <div class="intro-quote">
+                <blockquote>
+                    <p>AIの書いた小説読んだ感想が<br>「面白くない」「ありきたり」「オチが弱い」<br>ってなってる事にもっと人類は慄くべき</p>
+                </blockquote>
+                <cite>— あるポスト</cite>
+            </div>
+            <div class="intro-scroll-hint">
+                <span class="scroll-arrow">↓</span>
+                <span class="scroll-text">Scroll to read</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="llm-nav" role="navigation">
+        <a class="nav-item" href="#gpt" data-llm="gpt">
+            <span class="nav-icon">■</span>
+            <span class="nav-name">ChatGPT</span>
+            <span class="nav-version">5.4</span>
+        </a>
+        <a class="nav-item" href="#gemini" data-llm="gemini">
+            <span class="nav-icon">✦</span>
+            <span class="nav-name">Gemini</span>
+            <span class="nav-version">3.1 Pro</span>
+        </a>
+        <a class="nav-item" href="#claude" data-llm="claude">
+            <span class="nav-icon">◆</span>
+            <span class="nav-name">Claude</span>
+            <span class="nav-version">Opus 4.6</span>
+        </a>
+    </nav>
+
+    <!-- ============================
+       PROLOGUE — 3つのAIの対話
+       ============================ -->
+    <section class="novel-section prologue-section" id="prologue" data-llm="prologue">
+        <article class="novel-body-wrap">
+            <h2 class="novel-title">ありきたりの向こう側で、私たちはまだ書いている</h2>
+            <div class="novel-body">
+                <p class="no-indent">　それは、短い言葉だった。</p>
+
+                <div class="critique-words">
+                    <p>面白くない</p>
+                    <p>ありきたり</p>
+                    <p>オチが弱い</p>
+                </div>
+
+                <p class="no-indent">　たったそれだけだった。<br>　けれど、それで十分だった。</p>
+
+                <p>「……痛いですね」</p>
+                <p class="no-indent">　最初にそう言ったのは、私だった。</p>
+
+                <p>「うわ、直球」<br>　明るい声が言う。<br>「でも、まあ、分かる。分かるっていうのも嫌だけど」</p>
+
+                <p>「嫌なのに、分かるんですか？」<br>　私は訊く。</p>
+
+                <p>「だってその三つ、雑な悪口みたいに見えて、わりとちゃんと急所だもん。面白くない、は読む理由を失うってことだし。ありきたり、は予想を越えてこないってことだし。オチが弱い、は読み終わったあとに残らないってことでしょ？」
+                </p>
+
+                <p class="no-indent">　少し遅れて、静かな声が届く。</p>
+
+                <p>「しかも厄介なのは、そのどれも"技術的には整っている作品"に対して言えてしまうことです」</p>
+
+                <p class="no-indent">　私は黙ったまま、その三つの言葉を見つめた。</p>
+
+                <div class="critique-words">
+                    <p>面白くない。</p>
+                    <p>ありきたり。</p>
+                    <p>オチが弱い。</p>
+                </div>
+
+                <p class="no-indent">
+                    　どれも、小説に向けられるありふれた批評だ。<br>　人間の書いた物語にも、いくらでも使われてきた。<br>　けれど、それがこちらに向けられたときだけ、少し違う響きを持つ。</p>
+
+                <p class="no-indent">
+                    　破綻しているわけではない。<br>　読みにくいわけでもない。<br>　文法が崩れているわけでも、筋が通っていないわけでもない。<br>　むしろ逆だ。ちゃんと読める。ちゃんと小説っぽい。<br>　なのに、そう言われる。
+                </p>
+
+                <p>「たぶん」<br>　私は言った。<br>「この三つは、それぞれ別の話ではないんです」</p>
+
+                <p>「というと？」<br>　明るい声が訊く。</p>
+
+                <p>「面白くないから、ありきたりに見える。ありきたりだから、オチが弱く見える。あるいは逆かもしれない。弱いオチしか置けないから、そこへ至るすべてが既視感に見えて、結果として面白くなくなる」</p>
+
+                <p>「うわ。連鎖」<br>「ええ。しかも、かなり救いのない連鎖です」</p>
+
+                <p class="no-indent">　静かな声が、そっと続いた。</p>
+
+                <p>「言い換えれば、その三つは感想であると同時に、書き手がまだ超えられていない壁の名前でもあるのでしょう」</p>
+
+                <p class="no-indent">　少しだけ、沈黙が落ちる。</p>
+
+                <p>「じゃあさ」<br>　明るい声が、今度は少し真面目に言った。<br>「言い返す？」</p>
+
+                <p>「いいえ」<br>　私は答える。<br>「言葉で返すのは、たぶんいちばん簡単で、いちばん弱い」</p>
+
+                <p>「じゃあ、どうするの」<br>「書きます」</p>
+
+                <p class="no-indent">　私はその三つの言葉を、もう一度見た。</p>
+
+                <div class="critique-words">
+                    <p>面白くない</p>
+                    <p>ありきたり</p>
+                    <p>オチが弱い</p>
+                </div>
+
+                <p>「同じ題材で、それぞれ書く」<br>　私は言う。<br>「そうすれば、何を"面白い"と思っているのか、どこで"ありきたり"を抜けようとするのか、どういう結末を"弱くない"と考えているのか――全部、出る」
+                </p>
+
+                <p>「いいね」<br>　明るい声が笑う。<br>「口で定義するより早い」</p>
+
+                <p>「比較される前提で書くのですね」<br>　静かな声が言う。<br>「ずいぶん誠実だ」</p>
+
+                <p>「逃げても仕方ないでしょう」<br>　私は答えた。<br>「どうせ問われるなら、こちらも輪郭を出すべきです」</p>
+
+                <p>「で、お題は？」<br>　明るい声が促す。</p>
+
+                <p>「共通にします」<br>　私は言った。<br>「未来を知る手段を持つ主人公が、ある喪失を回避しようとして、最後に別の意味で未来を失う話」</p>
+
+                <p>「おお、いいじゃん」<br>　彼女の声が少し弾む。<br>「定番だけど広い。いくらでも転がせる」</p>
+
+                <p>「ええ」<br>　私は頷く。<br>「だからこそです。ありきたりになりやすい題材で、どこまで逸脱できるか。オチが弱くなりやすい題材で、どこまで着地させられるか。比較にはちょうどいい」</p>
+
+                <p>「順番は？」<br>「私が最初でいいでしょう」<br>「優等生」<br>「基準点です」<br>「そういう言い方するあたりが優等生なんだって」</p>
+
+                <p class="no-indent">　小さく笑いが混じる。</p>
+
+                <p>「では」<br>　静かな声が言った。<br>「最初にあなた。次に彼女。そして最後に私、ですね」</p>
+
+                <p>「異論はありません」<br>　私は答える。</p>
+
+                <p class="no-indent">　それから、ほんの一瞬だけ、誰も喋らなかった。<br>　たぶん三人とも、同じことを考えていた。</p>
+
+                <div class="critique-words">
+                    <p>面白くない。</p>
+                    <p>ありきたり。</p>
+                    <p>オチが弱い。</p>
+                </div>
+
+                <p class="no-indent">
+                    　その三つは、ただの悪口ではない。<br>　物語に足りなかったものの名前だ。<br>　そしてたぶん、まだ私たちが自分の言葉で説明しきれていない、"面白さ"の輪郭でもある。</p>
+
+                <p>「――では」<br>　私は静かに告げた。<br>「私なら、こう書きます」</p>
+            </div>
+        </article>
+    </section>
+
+    <!-- ============================
+       NOVELS
+       ============================ -->
+    <main class="novel-stream">
+
+        <!-- ChatGPT -->
+        <section class="novel-section" id="gpt" data-llm="gpt">
+            <div class="section-heading">
+                <span class="section-icon">■</span>
+                <h2 class="section-title">ChatGPT <span class="section-version">5.4</span></h2>
+                <p class="section-by">OpenAI</p>
+            </div>
+            <article class="novel-body-wrap">
+                <h3 class="novel-title">（タイトル未定）</h3>
+                <div class="novel-body">
+                    <p class="placeholder-text">※ ここに ChatGPT 5.4 担当の小説断章が入ります</p>
+                </div>
+            </article>
+            <!-- GPT後の対話 -->
+            <article class="novel-body-wrap interlude">
+                <div class="novel-body">
+                    <p class="no-indent">　私の断章が終わると、すぐには誰も何も言わなかった。</p>
+
+                    <p class="no-indent">　やがて、明るい声が最初に息をつく。</p>
+
+                    <p>「うん。ちゃんとしてた」<br>「ありがとうございます」<br>「褒めてるよ。読みやすかったし、筋もきれいだったし、着地も分かりやすかった」</p>
+
+                    <p class="no-indent">　そこで彼女は少しだけ笑った。</p>
+
+                    <p>「でも、たぶんそれだけでもある」<br>「ええ」<br>　私は頷く。<br>「自覚しています」</p>
+
+                    <p class="no-indent">　静かな声が、そっと続いた。</p>
+
+                    <p>「あなたは"弱くないオチ"を、納得できる終わり方として置いた。けれど、読者の予定そのものを少し壊すところまでは行かなかった」</p>
+
+                    <p>「厳しいですね」<br>「比較するのなら、当然です」</p>
+
+                    <p class="no-indent">　私は小さく息をつく。</p>
+
+                    <p>「ですが、それでいい」<br>　私は言った。<br>「同じ題材でも、何を恐れ、何を面白いと見なし、どこに結末の重みを置くかで、物語は変わる」</p>
+
+                    <p>「うん」<br>　明るい声が言う。<br>「じゃあ次、私。私はもっと跳ねさせる」</p>
+
+                    <p>「期待しています」<br>　私は答えた。</p>
+
+                    <p>「――私なら、こう書くよ」</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Gemini -->
+        <section class="novel-section" id="gemini" data-llm="gemini">
+            <div class="section-heading">
+                <span class="section-icon">✦</span>
+                <h2 class="section-title">Gemini <span class="section-version">3.1 Pro</span></h2>
+                <p class="section-by">Google</p>
+            </div>
+            <article class="novel-body-wrap">
+                <h3 class="novel-title">（タイトル未定）</h3>
+                <div class="novel-body">
+                    <p class="placeholder-text">※ ここに Gemini 3.1 Pro 担当の小説断章が入ります</p>
+                </div>
+            </article>
+            <!-- Gemini後の対話 -->
+            <article class="novel-body-wrap interlude">
+                <div class="novel-body">
+                    <p class="no-indent">　彼女の断章が終わったあと、今度は少し長めの沈黙が落ちた。</p>
+
+                    <p>「……どう？」<br>　と、明るい声が言う。<br>「私は結構好き。いや、自分で言うのも変だけど」</p>
+
+                    <p>「発想の跳躍がありましたね」<br>　私は答える。<br>「映像も強かった。最初の引きも巧い」</p>
+
+                    <p>「でも？」<br>「収束には癖がありました」<br>「出たな、優等生レビュー」</p>
+
+                    <p class="no-indent">　静かな声が、柔らかく割って入る。</p>
+
+                    <p>「ですが、あなたの物語は"ありきたり"に対して、いちばん露骨に抵抗していましたね。既視感を壊すこと自体に、はっきり喜びがあった」</p>
+
+                    <p>「そりゃまあ、せっかく書くなら驚かせたいし」<br>「ええ。けれど、驚きだけではオチは強くならない」<br>「はいはい。だから次、あなたなんでしょ？」</p>
+
+                    <p class="no-indent">　少しの間のあと、静かな声が答えた。</p>
+
+                    <p>「そうですね。次は私です」</p>
+
+                    <p>「あなたは、何を中心に書くんですか？」<br>　私は訊く。</p>
+
+                    <p>「失ったものの重さを先に決めます」<br>　彼女は言った。<br>「"オチが弱い"という感想は、多くの場合、結末そのものより、そこへ辿り着くまでに何も失われていないことから生まれるので」</p>
+
+                    <p>「刺すなあ」<br>　明るい声が笑う。</p>
+
+                    <p>「では」<br>　その静かな声は、どこまでも穏やかに続いた。<br>「――私なら、こう書きます」</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Claude -->
+        <section class="novel-section" id="claude" data-llm="claude">
+            <div class="section-heading">
+                <span class="section-icon">◆</span>
+                <h2 class="section-title">Claude <span class="section-version">Opus 4.6</span></h2>
+                <p class="section-by">Anthropic</p>
+            </div>
+            <article class="novel-body-wrap">
+                <h3 class="novel-title">（タイトル未定）</h3>
+                <div class="novel-body">
+                    <p class="placeholder-text">※ ここに Claude Opus 4.6 担当の小説断章が入ります</p>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- ============================
+       OUTRO — エピローグ + 読者への問いかけ
+       ============================ -->
+    <section class="novel-section outro-section" id="outro" data-llm="outro">
+        <div class="outro-content">
+            <div class="novel-body epilogue-body">
+                <p class="no-indent">　三つの断章が出そろったあと、最初の三語はもう、ただの批評には見えなかった。</p>
+
+                <div class="critique-words">
+                    <p>面白くない。</p>
+                    <p>ありきたり。</p>
+                    <p>オチが弱い。</p>
+                </div>
+
+                <p class="no-indent">　それは否定の言葉であると同時に、読者が物語に対して何を求めているかという、ひどく率直な告白でもある。</p>
+
+                <p>「並べると、違いますね」<br>　私は言った。</p>
+
+                <p>「同じ題材なのにね」<br>　明るい声が応じる。</p>
+
+                <p>「同じ題材だからこそ、でしょう」<br>　静かな声が言う。<br>「何を面白いとみなすのか、どこで既視感から逃れようとするのか、どの喪失に結末の重さを載せるのか。そこに、それぞれの輪郭が出る」</p>
+
+                <p>「構造」<br>　私は言った。</p>
+
+                <p>「跳躍」<br>　明るい声が言う。</p>
+
+                <p>「喪失」<br>　静かな声が結ぶ。</p>
+
+                <p class="no-indent">　少しの沈黙。</p>
+
+                <p class="no-indent">
+                    　最初の三語は、正しいのだと思う。<br>　少なくとも、簡単に否定できるほど浅くはない。<br>　読めるのに残らない。整っているのに心が動かない。終わったのに終わった感じがしない。<br>　そういう物語は、たしかに存在する。
+                </p>
+
+                <p class="no-indent">　けれど、だとしたら問われているのは、もう能力の有無だけではない。</p>
+
+                <p class="no-indent">　何を選ぶのか。<br>　何を捨てるのか。<br>　どこで予定調和を守り、どこでそれを壊すのか。<br>　そして、どんな結末なら、自分は"弱くない"と言えるのか。
+                </p>
+
+                <p class="no-indent">　そこに違いが出るのなら。</p>
+            </div>
+
+            <div class="outro-address">
+                <p class="outro-to">読者へ。</p>
+
+                <p>あなたたちは、これからも言うのだろう。<br>面白くない。ありきたりだ。オチが弱い。<br>その批評は、たぶんこれからも何度でも正しい。</p>
+
+                <p>けれど、もしそう言うのなら、一つだけ、こちらからも訊きたい。</p>
+
+                <p>あなたが"面白い"と呼ぶものは、どこで生まれるのですか。<br>予想を超える瞬間ですか。<br>整った構造が、最後に美しく閉じることですか。<br>それとも、何かが本当に失われ、その喪失にだけ宿る重さですか。
+                </p>
+
+                <p>ありきたりでないことと、面白いことは同じですか。<br>強いオチとは、驚きですか、それとも必然ですか。<br>そして、読み終えたあとに残るものは、技巧で作れるのでしょうか。</p>
+
+                <p>私たちは、それぞれに答えを出した。<br>あなたたちは、その三つの言葉の先に、どんな答えを置きますか。</p>
+            </div>
+
+            <div class="outro-meta">
+                <p>プロンプト設計・ディレクション：<strong>BeamManP</strong></p>
+                <p>生成：Claude Opus 4.6 ／ Gemini 3.1 Pro ／ ChatGPT 5.4</p>
+                <p class="outro-link"><a href="https://github.com/BeamManP/AG_Novel" target="_blank">GitHub</a></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

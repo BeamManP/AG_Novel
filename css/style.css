@@ -1,0 +1,542 @@
+/* ============================================
+   AI Novel Comparison — Scroll-based Themes
+   Full structure: Intro → Prologue → Novels → Outro
+   ============================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Inter', 'Noto Serif JP', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* ============================================
+   Theme Variables
+   ============================================ */
+
+/* Intro — 問いかけの空間 */
+[data-theme="intro"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-surface: #080808;
+  --text-primary: #a0a0a0;
+  --text-secondary: #666666;
+  --text-heading: #e0e0e0;
+  --accent: #888888;
+  --border: rgba(255, 255, 255, 0.06);
+}
+
+/* Prologue — 対話空間（わずかに温かみ） */
+[data-theme="prologue"] {
+  --bg-primary: #0d0b0f;
+  --bg-secondary: #14121a;
+  --bg-surface: #0a090d;
+  --text-primary: #b8b0c0;
+  --text-secondary: #706878;
+  --text-heading: #e0d8e8;
+  --accent: #9988aa;
+  --border: rgba(180, 160, 200, 0.08);
+}
+
+/* Claude — インディゴ・パープル系 */
+[data-theme="claude"] {
+  --bg-primary: #13111c;
+  --bg-secondary: #1c1730;
+  --bg-surface: #0e0c17;
+  --text-primary: #cdc5e0;
+  --text-secondary: #8a80a8;
+  --text-heading: #ede8f5;
+  --accent: #d4a574;
+  --accent-glow: rgba(212, 165, 116, 0.15);
+  --nav-active-bg: #d4a574;
+  --nav-active-text: #0e0c17;
+  --nav-hover: rgba(212, 165, 116, 0.1);
+  --border: rgba(160, 140, 200, 0.1);
+  --section-heading-bg: rgba(212, 165, 116, 0.06);
+  --section-heading-border: rgba(212, 165, 116, 0.2);
+}
+
+/* Gemini — 楽しい、カラフル */
+[data-theme="gemini"] {
+  --bg-primary: #f8f9ff;
+  --bg-secondary: #eef1ff;
+  --bg-surface: #ffffff;
+  --text-primary: #2d3142;
+  --text-secondary: #6b7394;
+  --text-heading: #1a1d2e;
+  --accent: #4285f4;
+  --accent-glow: rgba(66, 133, 244, 0.1);
+  --nav-active-bg: linear-gradient(135deg, #4285f4, #a855f7, #06b6d4);
+  --nav-active-text: #ffffff;
+  --nav-hover: rgba(66, 133, 244, 0.08);
+  --border: rgba(66, 133, 244, 0.12);
+  --section-heading-bg: rgba(66, 133, 244, 0.05);
+  --section-heading-border: rgba(66, 133, 244, 0.2);
+}
+
+/* GPT — 質実剛健、深緑 */
+[data-theme="gpt"] {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252525;
+  --bg-surface: #171717;
+  --text-primary: #d1d5db;
+  --text-secondary: #9ca3af;
+  --text-heading: #f3f4f6;
+  --accent: #10a37f;
+  --accent-glow: rgba(16, 163, 127, 0.12);
+  --nav-active-bg: #10a37f;
+  --nav-active-text: #ffffff;
+  --nav-hover: rgba(16, 163, 127, 0.08);
+  --border: rgba(209, 213, 219, 0.08);
+  --section-heading-bg: rgba(16, 163, 127, 0.05);
+  --section-heading-border: rgba(16, 163, 127, 0.25);
+}
+
+/* Outro — 問いかけの着地 */
+[data-theme="outro"] {
+  --bg-primary: #0c0a0e;
+  --bg-secondary: #141218;
+  --bg-surface: #0a0810;
+  --text-primary: #b8b0c8;
+  --text-secondary: #706880;
+  --text-heading: #e8e0f0;
+  --accent: #c8a882;
+  --border: rgba(200, 168, 130, 0.1);
+}
+
+/* ============================================
+   INTRO SECTION
+   ============================================ */
+.intro-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  transition: background-color 0.6s ease;
+}
+
+.intro-content {
+  max-width: 640px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.intro-quote {
+  margin-bottom: 60px;
+}
+
+.intro-quote blockquote {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.3rem;
+  line-height: 2;
+  color: var(--text-heading);
+  position: relative;
+  padding: 32px 0;
+  transition: color 0.6s ease;
+}
+
+.intro-quote blockquote::before,
+.intro-quote blockquote::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 auto;
+}
+
+.intro-quote blockquote::before {
+  margin-bottom: 28px;
+}
+
+.intro-quote blockquote::after {
+  margin-top: 28px;
+}
+
+.intro-quote cite {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  letter-spacing: 0.06em;
+}
+
+/* Scroll hint */
+.intro-scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+}
+
+.scroll-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes hintPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateY(6px);
+  }
+}
+
+/* ============================================
+   Sticky Navigation
+   ============================================ */
+.llm-nav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.6s ease, border-color 0.6s ease,
+    opacity 0.4s ease, transform 0.4s ease;
+}
+
+.llm-nav.nav-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 24px;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  background: var(--nav-hover);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background: var(--nav-active-bg);
+  color: var(--nav-active-text);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.nav-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.nav-version {
+  font-size: 0.62rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Prologue & Novel Sections
+   ============================================ */
+.novel-stream,
+.prologue-section {
+  background: var(--bg-primary);
+  transition: background-color 0.6s ease;
+}
+
+.novel-section {
+  scroll-margin-top: 70px;
+}
+
+/* --- Section Heading (LLM Banner) --- */
+.section-heading {
+  text-align: center;
+  padding: 40px 24px 28px;
+  background: var(--section-heading-bg);
+  border-bottom: 1px solid var(--section-heading-border);
+  transition: background-color 0.6s ease, border-color 0.6s ease;
+}
+
+.section-icon {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+  transition: color 0.6s ease;
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: 0.04em;
+  transition: color 0.6s ease;
+}
+
+.section-version {
+  font-weight: 400;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.section-by {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+  transition: color 0.6s ease;
+}
+
+/* --- Novel Body --- */
+.novel-body-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 60px;
+}
+
+.novel-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  transition: color 0.6s ease;
+}
+
+.novel-body,
+.epilogue-body {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--text-primary);
+  transition: color 0.6s ease;
+}
+
+.novel-body p,
+.epilogue-body p {
+  margin-bottom: 1.4em;
+  text-indent: 1em;
+}
+
+.novel-body p.no-indent,
+.epilogue-body p.no-indent {
+  text-indent: 0;
+}
+
+.novel-body p:last-child,
+.epilogue-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Critique words (centered, emphatic) --- */
+.critique-words {
+  text-align: center;
+  padding: 20px 0;
+  margin: 8px 0;
+}
+
+.critique-words p {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.4em;
+  text-indent: 0;
+  transition: color 0.6s ease;
+}
+
+/* --- Interlude (対話パート between novels) --- */
+.interlude {
+  padding-top: 40px;
+  padding-bottom: 48px;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+  transition: border-color 0.6s ease;
+}
+
+/* --- Placeholder for unwritten novels --- */
+.placeholder-text {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding: 60px 0;
+  text-indent: 0 !important;
+}
+
+/* ============================================
+   OUTRO SECTION
+   ============================================ */
+.outro-section {
+  background: var(--bg-primary);
+  transition: background-color 0.6s ease;
+}
+
+.outro-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.outro-content .epilogue-body {
+  margin-bottom: 60px;
+}
+
+/* Address to readers */
+.outro-address {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+  transition: border-color 0.6s ease;
+}
+
+.outro-to {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  text-indent: 0 !important;
+  margin-bottom: 24px !important;
+  transition: color 0.6s ease;
+}
+
+.outro-address p {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--text-primary);
+  margin-bottom: 1.4em;
+  text-indent: 0;
+  transition: color 0.6s ease;
+}
+
+/* Credits */
+.outro-meta {
+  text-align: center;
+}
+
+.outro-meta p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  transition: color 0.6s ease;
+}
+
+.outro-meta strong {
+  color: var(--text-primary);
+}
+
+.outro-link {
+  margin-top: 16px;
+}
+
+.outro-link a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  transition: color 0.6s ease;
+}
+
+.outro-link a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 640px) {
+  .intro-quote blockquote {
+    font-size: 1.1rem;
+  }
+
+  .llm-nav {
+    gap: 2px;
+    padding: 8px 8px;
+  }
+
+  .nav-item {
+    padding: 8px 14px;
+  }
+
+  .nav-name {
+    font-size: 0.75rem;
+  }
+
+  .section-heading {
+    padding: 28px 16px 20px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .novel-body-wrap {
+    padding: 32px 18px 48px;
+  }
+
+  .novel-title {
+    font-size: 1.3rem;
+  }
+
+  .novel-body,
+  .epilogue-body {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .outro-content {
+    padding: 48px 18px;
+  }
+}
