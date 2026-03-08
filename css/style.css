@@ -71,21 +71,21 @@ body {
   --section-heading-border: rgba(212, 165, 116, 0.2);
 }
 
-/* Gemini — 楽しい、カラフル */
+/* Gemini — ダーク × カラフルアクセント */
 [data-theme="gemini"] {
-  --bg-primary: #f8f9ff;
-  --bg-secondary: #eef1ff;
-  --bg-surface: #ffffff;
-  --text-primary: #2d3142;
-  --text-secondary: #6b7394;
-  --text-heading: #1a1d2e;
+  --bg-primary: #0f1124;
+  --bg-secondary: #161938;
+  --bg-surface: #0c0e1e;
+  --text-primary: #c8ccf0;
+  --text-secondary: #7b82b8;
+  --text-heading: #e8ecff;
   --accent: #4285f4;
-  --accent-glow: rgba(66, 133, 244, 0.1);
+  --accent-glow: rgba(66, 133, 244, 0.15);
   --nav-active-bg: linear-gradient(135deg, #4285f4, #a855f7, #06b6d4);
   --nav-active-text: #ffffff;
-  --nav-hover: rgba(66, 133, 244, 0.08);
+  --nav-hover: rgba(66, 133, 244, 0.1);
   --border: rgba(66, 133, 244, 0.12);
-  --section-heading-bg: rgba(66, 133, 244, 0.05);
+  --section-heading-bg: rgba(66, 133, 244, 0.06);
   --section-heading-border: rgba(66, 133, 244, 0.2);
 }
 
@@ -118,6 +118,37 @@ body {
   --accent: #c8a882;
   --border: rgba(200, 168, 130, 0.1);
 }
+
+/* Atogaki — あとがき */
+[data-theme="atogaki"] {
+  --bg-primary: #0c0a0e;
+  --bg-secondary: #141218;
+  --bg-surface: #0a0810;
+  --text-primary: #b8b0c8;
+  --text-secondary: #706880;
+  --text-heading: #e8e0f0;
+  --accent: #c8a882;
+  --border: rgba(200, 168, 130, 0.1);
+}
+
+/* Grok — 赤黒い破壊者 */
+[data-theme="grok"] {
+  --bg-primary: #0a0000;
+  --bg-secondary: #1a0505;
+  --bg-surface: #0d0000;
+  --text-primary: #e0b0b0;
+  --text-secondary: #a06060;
+  --text-heading: #ff4444;
+  --accent: #ff2222;
+  --accent-glow: rgba(255, 34, 34, 0.2);
+  --nav-active-bg: #ff2222;
+  --nav-active-text: #ffffff;
+  --nav-hover: rgba(255, 34, 34, 0.1);
+  --border: rgba(255, 34, 34, 0.15);
+  --section-heading-bg: rgba(255, 34, 34, 0.08);
+  --section-heading-border: rgba(255, 34, 34, 0.3);
+}
+
 
 /* ============================================
    INTRO SECTION
@@ -281,6 +312,19 @@ body {
   opacity: 0.7;
 }
 
+.nav-item-meta {
+  opacity: 0.6;
+  padding: 10px 16px;
+}
+
+.nav-item-meta:hover {
+  opacity: 1;
+}
+
+.nav-item-meta.active {
+  opacity: 1;
+}
+
 /* ============================================
    Prologue & Novel Sections
    ============================================ */
@@ -365,7 +409,7 @@ body {
 .novel-body p,
 .epilogue-body p {
   margin-bottom: 1.4em;
-  text-indent: 1em;
+  text-indent: 0;
 }
 
 .novel-body p.no-indent,
@@ -490,6 +534,104 @@ body {
 }
 
 .outro-link a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   GROK — Hidden Character
+   ============================================ */
+.grok-trigger {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.grok-hint {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.grok-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: #ff2222;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.85rem;
+  padding: 10px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: grokPulse 3s ease-in-out infinite;
+}
+
+.grok-btn:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+  background: rgba(255, 0, 0, 0.1);
+  animation: none;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+@keyframes grokPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.grok-section {
+  background: var(--bg-primary);
+  transition: background-color 0.6s ease;
+}
+
+.grok-heading {
+  border-top: 3px solid #ff2222;
+}
+
+.grok-section .novel-body p {
+  text-indent: 0;
+}
+
+/* Site Credits (Footer) */
+.site-credits {
+  text-align: center;
+  padding: 40px 24px;
+  background: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.site-credits p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #706880;
+  margin-bottom: 8px;
+}
+
+.site-credits strong {
+  color: #b8b0c8;
+}
+
+.site-credits .outro-link {
+  margin-top: 16px;
+}
+
+.site-credits .outro-link a {
+  color: #c8a882;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.site-credits .outro-link a:hover {
   text-decoration: underline;
 }
 
