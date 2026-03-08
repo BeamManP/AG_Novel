@@ -381,7 +381,7 @@ body {
 
 /* --- Novel Body --- */
 .novel-body-wrap {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 48px 24px 60px;
 }
@@ -439,6 +439,15 @@ body {
   transition: color 0.6s ease;
 }
 
+
+/* --- Section divider (断章間の区切り) --- */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px auto 0;
+  max-width: 800px;
+}
+
 /* --- Interlude (対話パート between novels) --- */
 .interlude {
   padding-top: 40px;
@@ -466,7 +475,7 @@ body {
 }
 
 .outro-content {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 80px 24px;
 }
